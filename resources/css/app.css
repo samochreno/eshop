@@ -1,0 +1,240 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --color-primary:   white;
+        --color-secondary: #fbfbfd;
+        --color-tertiary:  #f2f2f7;
+
+        --color-detail:      #27272a;
+        --color-detail-soft: #a1a1aa;
+
+        --color-info:       #007fff;
+        --color-success:    #43b18a;
+        --color-danger:     #ff3d3d;
+        --color-warning:    yellow;
+
+        --color-shadow-sm: rgba(0, 0, 0, 6%);
+        --color-shadow-md: rgba(0, 0, 0, 10%);
+        --color-shadow-cn: rgba(0, 0, 0, 12%);
+        --color-drop-shadow-sm: rgba(0, 0, 0, 30%);
+        --color-drop-shadow-cn: rgba(0, 0, 0, 100%);
+
+        --navbar-height: 5rem;
+    }
+
+    html {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        overscroll-behavior: none;
+        @apply m-0 p-0 text-sm text-detail touch-manipulation bg-secondary;
+    }
+
+    img {
+        -webkit-user-drag: none;
+        -khtml-user-drag: none;
+        -moz-user-drag: none;
+        -o-user-drag: none;
+        user-drag: none;
+    }
+
+    div,
+    article,
+    nav,
+    header,
+    main,
+    footer,
+    aside,
+    ul,
+    ol,
+    li,
+    h1,
+    form,
+    input {
+        @apply inline-block w-full h-fit;
+    }
+
+    a,
+    p,
+    button {
+        @apply inline-block w-fit h-fit;
+    }
+
+    * {
+        text-decoration: none;
+    }
+
+    h1 {
+        @apply text-2xl text-center font-medium;
+    }
+
+    legend {
+        @apply inline-block w-[calc(100%-1rem)] m-[0.5rem] text-sm text-detail text-left;
+    }
+
+    input[type="text"] {
+        @apply h-12;
+    }
+
+    input[type="password"] {
+        @apply h-12;
+    }
+
+    input[type="email"] {
+        @apply h-12;
+    }
+
+    input:focus {
+        outline-width: 2px;
+        outline-offset: -2px;
+        @apply outline-info;
+    }
+
+    input::placeholder {
+        @apply text-detail-soft;
+    }
+}
+
+@layer components {
+    .material-symbols-rounded {
+        @apply pointer-events-none;
+    }
+
+    .flex-center {
+        @apply flex justify-center items-center;
+    }
+
+    .button {
+        @apply !relative pointer-events-auto px-4 py-2 cursor-pointer w-fit rounded-lg text-primary text-md bg-info overflow-hidden font-medium;
+    }
+
+    .button:hover {
+        @apply shadow-sm;
+    }
+
+    .hyperlink {
+        @apply text-info;
+    }
+
+    .hyperlink:hover {
+        @apply underline;
+    }
+
+    .input {
+        outline-width: 1px;
+        outline-offset: -1px;
+        padding: 0 20px;
+        @apply bg-primary outline outline-detail-soft text-sm rounded-xl;
+    }
+
+    .cn {
+        border-radius: 25px;
+        @apply m-12 p-12 bg-primary shadow-cn;
+    }
+
+    .cn.screen,
+    .cn.fullscreen {
+        width: unset;
+        max-width: min(1350px, 90vw);
+        @apply block !mx-auto;
+    }
+
+    .cn.fullscreen {
+        height: calc(100% - theme(spacing.12) * 2);
+    }
+
+    .disabled {
+        @apply !w-0 !h-0 !m-0 !p-0 !invisible !fixed;
+    }
+
+    .loading {
+        @apply aspect-square h-10;
+    }
+
+    .loading-black {
+        opacity: 7.5%;
+        @apply loading;
+    }
+
+    .loading-white {
+        opacity: 75%;
+        @apply loading;
+    }
+
+    .fill {
+        font-variation-settings: 'FILL' 1 !important;
+    }
+
+    .screen-center {
+        height: calc(100dvh - var(--navbar-height));
+        @apply w-full flex-center;
+    }
+}
+
+@layer utilities {
+    .button-ripple {
+        background-color: white;
+        transform: translate(-50%, -50%);
+        animation: ripple 1s linear;
+        @apply pointer-events-none absolute rounded-full;
+    }
+
+    @keyframes ripple {
+        0% {
+            opacity: 30%;
+            width:  0;
+            height: 0;
+        }
+
+        100% {
+            opacity: 0;
+            width:  1000px;
+            height: 1000px;
+        }
+    }
+
+    .navbar-logo {
+        transition: color 0.2s;
+        @apply text-detail;
+    }
+
+    .navbar-logo:hover {
+        @apply text-info;
+    }
+
+    .navbar-button {
+        transition: color 0.2s;
+        background-color: transparent;
+        transition: background-color 0.2s;
+        @apply text-detail h-10 px-4 rounded-full;
+    }
+
+    .navbar-button:hover {
+        @apply text-info bg-tertiary;
+    }
+
+    .navbar-button > a {
+        transition: color 0.2s;
+        @apply text-detail;
+    }
+
+    .navbar-button > a:hover {
+        @apply text-info;
+    }
+
+    .navbar {
+        background-color: color-mix(in srgb, var(--color-primary) 80%, transparent);
+    }
+
+    .product-attribute {
+        @apply w-fit px-4 py-2 text-sm bg-primary rounded-lg font-semibold;
+    }
+}
